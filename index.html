@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Foodzy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Foodzy lee la factura de tu mercado, sabe cuándo vence cada alimento y te avisa a tiempo. Pruébala aquí mismo con el simulador.">
+<meta name="theme-color" content="#07110b">
+<meta property="og:title" content="Foodzy · Tu despensa inteligente">
+<meta property="og:description" content="Escanea tu factura, organiza tu despensa, recibe avisos antes de que se dañe y cocina con lo que tienes.">
+<meta property="og:image" content="img/video-portada.jpg">
+<link rel="icon" href="img/icono-64.png" type="image/png">
+<link rel="apple-touch-icon" href="img/icono-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Color+Emoji&family=Poppins:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..600,0..1,0&display=block">
+<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="simulador.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <a class="marca" href="#arriba" aria-label="Foodzy, inicio">
+      <img src="img/icono-64.png" alt="" width="34" height="34">
+      <span class="logotipo" role="img" aria-label="foodzy"></span>
+    </a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#simulador">Simulador</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#funciones">Funciones</a>
+      <a href="#video">Video</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <div class="acciones">
+      <button class="tema" id="tema" type="button" aria-label="Cambiar tema"><span class="ms">contrast</span></button>
+      <a class="boton boton-verde" href="#descargar" data-descargar aria-label="Descargar Foodzy"><span class="ms">android</span><span data-texto>Descargar</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="arriba">
+  <!-- Portada: la promesa y el simulador -->
+  <section class="apertura" aria-labelledby="titulo-portada">
+    <canvas id="cascada" aria-hidden="true"></canvas>
+    <div class="envoltura">
+      <div>
+        <p class="ceja">Tu despensa inteligente</p>
+        <h1 id="titulo-portada">Que no se te dañe <em>ni un tomate</em>.</h1>
+        <p class="bajada">Foodzy lee la factura de tu mercado, sabe cuándo vence cada alimento y te avisa a tiempo. Cocinas con lo que tienes y botas menos plata.</p>
+        <div class="botones">
+          <a class="boton boton-verde" href="#simulador" data-probar="escanear"><span class="ms">receipt_long</span>Escanear la factura de ejemplo</a>
+          <a class="boton boton-claro" href="#como">Cómo funciona</a>
+        </div>
+        <ul class="pruebas">
+          <li><span class="ms">bolt</span><span><strong>40</strong> productos leídos en unos <strong>10 s</strong></span></li>
+          <li><span class="ms">notifications_active</span>Avisos antes de que se dañe</li>
+          <li><span class="ms">group</span>Despensa compartida con tu hogar</li>
+        </ul>
+      </div>
+      <div class="lado-simulador" id="simulador">
+        <div class="telefono-escala" id="telefono-escala">
+          <div class="telefono">
+            <div class="app" id="app" data-modo="sistema" role="region" aria-label="Simulador de la app Foodzy"></div>
+          </div>
+        </div>
+        <p class="nota-simulador"><span class="ms">lock</span>Simulador: lo que hagas se queda en este navegador</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- El problema, en forma de ticket -->
+  <section class="seccion manchas desperdicio" aria-labelledby="titulo-problema">
+    <div class="envoltura">
+      <div>
+        <p class="ceja">El problema</p>
+        <h2 id="titulo-problema" class="grande">Casi 1 de cada 3 alimentos del mundo se pierde o se desperdicia. Y en casa, eso es <strong>dinero a la basura</strong>.</h2>
+        <p class="intro">Casi nunca se bota comida por descuido. Se bota porque nadie se acordó de que el queso estaba al fondo de la nevera. Foodzy se acuerda por ti y te dice qué cocinar antes de que se dañe.</p>
+      </div>
+      <figure class="ticket" aria-labelledby="ticket-titulo" style="margin:0">
+        <p class="tienda" id="ticket-titulo">TICKET DEL DESPERDICIO</p>
+        <p class="sub">Mundo · año 2022</p>
+        <hr>
+        <p class="renglon"><span>Comida botada en el mundo</span><b>1.050 M t</b></p>
+        <p class="renglon"><span>De eso, en los hogares</span><b>60 %</b></p>
+        <p class="renglon"><span>Por persona, en casa, al año</span><b>79 kg</b></p>
+        <p class="renglon"><span>Equivale a comidas por día</span><b>1.000 M</b></p>
+        <hr>
+        <p class="renglon total"><span>TOTAL: lo que pagaste y botaste</span><b>¿?</b></p>
+        <figcaption class="fuente">Fuente: PNUMA, Informe del Índice de Desperdicio de Alimentos 2024.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Cómo funciona: los cuatro pasos del video -->
+  <section class="seccion" id="como" aria-labelledby="titulo-como">
+    <div class="envoltura">
+      <p class="ceja">Cómo funciona</p>
+      <h2 id="titulo-como">Del mercado a la mesa, <span class="verde">sin que nada se pierda</span></h2>
+      <p class="intro">Cuatro pasos que la app hace casi sola. Puedes probarlos todos en el simulador de arriba.</p>
+      <ol class="pasos">
+        <li class="paso"><span class="ms">document_scanner</span><span class="num">01 · Escanea</span><h3>Registra tu compra en segundos</h3><p>Toma una foto de la factura, de tu compra o del código de barras. La IA reconoce cada alimento y estima cuándo vence.</p></li>
+        <li class="paso"><span class="ms">kitchen</span><span class="num">02 · Organiza</span><h3>Toda tu despensa, a la vista</h3><p>Sabes qué tienes, dónde está (nevera, congelador o alacena) y qué conviene usar primero.</p></li>
+        <li class="paso"><span class="ms">notifications_active</span><span class="num">03 · Avisa</span><h3>Te avisa antes de que se dañe</h3><p>Recibes una notificación los días que elijas antes del vencimiento, a la hora que quieras.</p></li>
+        <li class="paso"><span class="ms">skillet</span><span class="num">04 · Cocina</span><h3>Recetas con lo que ya tienes</h3><p>La IA propone recetas que aprovechan primero lo que está por vencer. Al cocinar, la despensa se descuenta sola.</p></li>
+      </ol>
+      <div class="semaforo" aria-label="Estados de un alimento en la app">
+        <span class="chip-estado" style="--c:var(--e-bien)"><span class="ms">eco</span>Vence en 12 días</span>
+        <span class="chip-estado" style="--c:var(--e-pronto)"><span class="ms">schedule</span>Vence mañana</span>
+        <span class="chip-estado" style="--c:var(--e-hoy)"><span class="ms">timer</span>Vence hoy</span>
+        <span class="chip-estado" style="--c:var(--e-vencido)"><span class="ms">warning</span>Venció ayer</span>
+        <span class="chip-estado" style="--c:var(--e-pronto)"><span class="ms">schedule</span>≈ Vence en 3 días</span>
+        <span class="chip-estado" style="--c:var(--e-nunca)"><span class="ms">all_inclusive</span>No vence</span>
+      </div>
+      <p class="semaforo-nota">Cada alimento lleva su color. El <strong>≈</strong> indica que la fecha es estimada y no leída del empaque.</p>
+    </div>
+  </section>
+
+  <!-- Funciones -->
+  <section class="seccion manchas" id="funciones" aria-labelledby="titulo-funciones">
+    <div class="envoltura">
+      <p class="ceja">Funciones</p>
+      <h2 id="titulo-funciones">Hecha para la despensa <span class="verde">de verdad</span></h2>
+      <p class="intro">Facturas con abreviaturas, yuca que dura cuatro días y queso costeño que dura una semana. Foodzy conoce tu mercado.</p>
+      <div class="funciones">
+        <article class="funcion destacada">
+          <span class="ms">receipt_long</span>
+          <h3>La IA lee tu factura</h3>
+          <p>Toma una foto del ticket y Foodzy carga cada producto con su cantidad, su precio y una fecha estimada. Una factura de 40 productos queda lista en unos 10 segundos. En una foto de tu compra, recorta la imagen de cada producto.</p>
+          <div class="etiquetas"><span class="etiqueta">Factura</span><span class="etiqueta">Foto de la compra</span><span class="etiqueta">Código de barras</span><span class="etiqueta">Fecha impresa</span></div>
+        </article>
+        <article class="funcion">
+          <span class="ms">event_available</span>
+          <h3>Fecha leída o estimada</h3>
+          <p>Si la fecha está impresa, la lee sin confundirla con el lote ni con la fecha de elaboración. Si no, la estima según el producto y dónde lo guardas.</p>
+        </article>
+        <article class="funcion">
+          <span class="ms">skillet</span>
+          <h3>Cocinas y se descuenta sola</h3>
+          <p>Al cocinar una receta se restan sus ingredientes. ¿Sacaste algo? Muéstralo con una foto y Foodzy lo descuenta.</p>
+        </article>
+        <article class="funcion">
+          <span class="ms">checklist</span>
+          <h3>Una lista para toda la casa</h3>
+          <p>Invita a tu familia con un código y compartan la despensa y la lista. Lo que compras se tacha solo al escanear la factura.</p>
+        </article>
+        <article class="funcion">
+          <span class="ms">savings</span>
+          <h3>Mira cuánto dejas de botar</h3>
+          <p>Cuánto gastas, cuánto aprovechas y cuánto se pierde, mes a mes y por categoría.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section class="seccion" id="video" aria-labelledby="titulo-video">
+    <div class="envoltura">
+      <p class="ceja">En dos minutos</p>
+      <h2 id="titulo-video">Mira Foodzy <span class="verde">en acción</span></h2>
+      <div class="video-marco">
+        <video controls preload="none" playsinline poster="img/video-portada.jpg" aria-label="Video promocional de Foodzy">
+          <source src="video/foodzy-promo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas -->
+  <section class="seccion manchas" id="preguntas" aria-labelledby="titulo-preguntas">
+    <div class="envoltura">
+      <p class="ceja">Preguntas</p>
+      <h2 id="titulo-preguntas">Lo que nos suelen preguntar</h2>
+      <div class="preguntas">
+        <details open>
+          <summary>¿Cuánto cuesta?<span class="ms">add</span></summary>
+          <p>Puedes empezar gratis. El plan gratuito incluye 15 escaneos con IA al mes. Con Premium no hay límite.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa con lo que hago en el simulador?<span class="ms">add</span></summary>
+          <p>Se queda en tu navegador. No se envía a ningún servidor ni a la base de datos de Foodzy, y nadie más lo ve. Puedes borrarlo cuando quieras desde Ajustes, dentro del simulador.</p>
+        </details>
+        <details>
+          <summary>¿Y si la IA no puede leer la fecha?<span class="ms">add</span></summary>
+          <p>La estima según el tipo de producto y dónde lo guardas, y la marca con ≈. Si quieres la fecha exacta, fotografías el empaque de cerca o la eliges en el calendario.</p>
+        </details>
+        <details>
+          <summary>¿Puedo compartir la despensa con mi familia?<span class="ms">add</span></summary>
+          <p>Sí. Cada hogar tiene un código de invitación. Quien entra con él ve la misma despensa y la misma lista de compras. Quien creó el hogar puede cambiar el código cuando quiera, y el anterior deja de servir.</p>
+        </details>
+        <details>
+          <summary>¿Funciona sin internet?<span class="ms">add</span></summary>
+          <p>Sí. La despensa se guarda en tu celular y se sincroniza con tu hogar cuando vuelve la señal. Escanear con IA sí necesita conexión.</p>
+        </details>
+        <details>
+          <summary>¿Puedo elegir cuándo me avisa?<span class="ms">add</span></summary>
+          <p>Sí. Eliges cuántos días antes del vencimiento quieres el aviso y a qué hora. Al tocar la notificación, decides si lo consumiste, lo cocinas o lo desechas.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cierre -->
+  <section class="seccion cierre" id="descargar" aria-labelledby="titulo-cierre">
+    <div class="envoltura">
+      <h2 id="titulo-cierre"><span>Menos <em>desperdicio</em>.</span><span>Más <em>ahorro</em>.</span><span>Comidas <em>sin estrés</em>.</span></h2>
+      <p>Descarga Foodzy y deja que tu despensa se acuerde por ti.</p>
+      <div class="botones">
+        <a class="boton boton-verde" href="#descargar" data-descargar><span class="ms">android</span><span data-texto>Descargar para Android</span></a>
+        <a class="boton boton-claro" href="#simulador" data-probar="inicio">Probar el simulador</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <span>© <span id="anio">2026</span> Foodzy · Tu despensa inteligente</span>
+    <span>El simulador guarda tus datos solo en este navegador.</span>
+  </div>
+</footer>
+
+<script src="siluetas.js"></script>
+<script src="datos.js"></script>
+<script src="simulador.js"></script>
+<script src="pagina.js"></script>
+</body>
+</html>
